@@ -1,0 +1,1242 @@
+#include<bits/stdc++.h>
+using namespace std;
+//------------------------------------------------------------------------------
+ListNode*reverserec(ListNode*head)
+{
+    if(head==NULL  || head->next==NULL)
+    return head;
+    
+    ListNode*newhe=reverserec(head->next);
+    head->next->next=head;
+    newhe->next=NULL
+    return newhe;
+}
+
+ListNode*reversestack(ListNode*head)
+{
+    if(head==NULL || head->next==NULL)
+    return head;
+    
+    stack<int>st;
+    ListNode*temp=head;
+    while(temp!=NULL)
+    {
+        st.push(temp->val);
+        temp=temp->next;
+    }
+    
+    temp=head;
+    while(!st.empty())
+    {
+        temp->val=st.top();
+        st.pop();
+        temp=temp->next;
+    }
+    
+    return head;
+}
+
+ListNode*reverseit(ListNode*head)
+{
+    if(head==NULL || head->next==NULL)
+    return head;
+    
+    ListNode*curr=head;
+    ListNode*pre=NULL;
+    while(curr!=NULL)
+    {
+        ListNode*nextn=curr->next;
+        curr->next=pre;
+        pre=curr;
+        curr=curr->next;
+    }
+    return pre;
+}
+
+//------------------------------------------------------------------------------
+ListNode*middlenode(ListNode*head)
+{
+    if(head==NULL  || head->next==NULL)
+    return head;
+    
+    int len=0;
+    ListNode*temp=head;
+    while(temp!=NULL)
+    {
+        len++;
+        temp=temp->next;
+    }
+    
+    int half=len/2;
+    temp=head;
+    while(half--)
+    {
+        temp=temp->next;
+    }
+    return temp;
+}
+
+ListNode*middlenodeopt(ListNode*head)
+{
+    if(head==NULL  || head->next==NULL)
+    return head;
+    
+    ListNode*slow=head;
+    ListNode*fast=head;
+    while(fast!=NULL && fast->next!=NULL)
+    {
+        slow=slow->next;
+        fast=fast->next->next;
+    }
+    return slow;
+}
+
+//------------------------------------------------------------------------------
+ListNode*deletemiddle(ListNode*head)
+{
+    if(head==NULL  || head->next==NULL)
+    return NULL;
+    
+    int len=0;
+    ListNode*temp=head;
+    while(temp!=NULL)
+    {
+        len++;
+        temp=temp->next;
+    }
+    
+    int half=len/2;
+    temp=head;
+    ListNode*pre=NULL;
+    while(half--)
+    {
+        pre=temp;
+        temp=temp->next;
+    }
+    
+    pre->next=pre->next->next;
+    delete (temp);
+    return head;
+}
+
+ListNode*deletemiddle(ListNode*head)
+{
+    if(head==NULL  || head->next==NULL)
+    return NULL;
+    
+    ListNode*slow=head;
+    ListNode*fast=head;
+    ListNode*pre=NULL;
+    while(fast!=NULL && fast->next!=NULL)
+    {
+        pre=slow;
+        slow=slow->next;
+        fast=fast->next->next;
+    }
+    
+    pre->next=pre->next->next;
+    delete (slow);
+    
+    return head;
+}
+
+//------------------------------------------------------------------------------
+bool iscyclic(ListNode*head)
+{
+    if(head==NULL  || head->next==NULL)
+    return true;
+    
+    ListNode*temp=head;
+    set<ListNode*>st;
+    while(temp!=NULL)
+    {
+        if(st.find(temp)!=st.end())
+        {
+            return true;
+        }
+        
+        st.insert(temp);
+        temp=temp->next;
+    }
+    return false;
+}
+
+bool iscyclicopt(ListNode*head)
+{
+    if(head==NULL  || head->next==NULL)
+    return true;
+    
+    ListNode*slow=head;
+    ListNode*fast=head;
+    while(fast!=NULL && fast->next!=NULL)
+    {
+        slow=slow->next;
+        fast=fast->next->next;
+        if(slow==fast)
+        {
+            return true;
+        }
+    }
+    return false;
+}
+
+//------------------------------------------------------------------------------
+ListNode*startnodeloop(ListNode*head)
+{
+    if(head==NULL  || head->next==NULL)
+    return NULL;
+    
+    ListNode*temp=head;
+    set<ListNode*>st;
+    while(temp!=NULL)
+    {
+        if(st.find(temp)!=st.end())
+        {
+            return temp;
+        }
+        
+        st.insert(temp);
+        temp=temp->next;
+    }
+    return NULL;
+}
+
+ListNode*startnodeloop(ListNode*head)
+{
+    if(head==NULL  || head->next==NULL)
+    return NULL;
+    
+    ListNode*slow=head;
+    ListNode*fast=head;
+    while(fast!=NULL && fast->next!=NULL)
+    {
+        slow=slow->next;
+        fast=fast->next->next;
+        if(slow==fast)
+        break;
+    }
+    
+    slow=head;
+    while(slow!=fast)
+    {
+        slow=slow->next;
+        fast=fast->next;
+    }
+    return slow;
+}
+
+//------------------------------------------------------------------------------
+ListNode*oddeven(ListNode*head)
+{
+    if(head==NULL  || head->next==NULL)
+    return head;
+    
+    ListNode*oddd=head;
+    ListNode*even=head->next;
+    ListNode*evenh=head->next;
+    while(even!=NULL && even->next!=NULL)
+    {
+        odd->next=even->next;
+        even=even->next->next;
+        odd=odd->next;
+        even=even->next;
+    }
+    
+    odd->next=evenh;
+    return head;
+}
+
+//------------------------------------------------------------------------------
+ListNode*mergeRec(ListNode*head1, ListNode*head2)
+{
+    if(head1==NULL)
+    return head2;
+    
+    if(head2==NULL)
+    return head1;
+    
+    if(head1->val<head2->val)
+    {
+        head1->next=mergeRec(head->next, head2);
+        return head1;
+    }
+    else 
+    {
+        head2->next=mergeRec(head1, head2->next);
+        return head2;
+    }
+}
+
+ListNode*mergeiter(ListNode*head1, ListNode*head2)
+{
+    if(head1==NULL)
+    return head2;
+    
+    if(head2==NULL)
+    return head1;
+    
+    ListNode*dummy=new ListNode(0);
+    ListNode*tail=dummy;
+    ListNode*temp1=head1;
+    ListNode*temp2=head2;
+    while(temp1!=NULL && temp2!=NULL)
+    {
+        if(temp1->val<temp2->val)
+        {
+            tail->next=temp1;
+            temp1=temp1->next;
+            tail=tail->next;
+        }
+        else
+        {
+            tail->next=temp2;
+            tail=tail->next;
+            temp2=temp2->next;
+        }
+    }
+    
+    if(temp1!=NULL)
+    {
+        tail->next=temp1;
+    }
+    
+    if(temp2!=NULL)
+    {
+        tail->next=temp2;
+    }
+    return dummy->next;
+}
+
+//------------------------------------------------------------------------------
+ListNode*sort012(ListNode*head)
+{
+    if(head==NULL || head->next==NULL)
+    return head;
+    
+    int count0=0;
+    int count1=0;
+    int count2=0;
+    ListNode*temp=head;
+    while(temp!=NULL)
+    {
+        if(temp->val==0)
+        {
+            count0++;
+            temp=temp->next;
+        }
+        else if(temp->val==1)
+        {
+            count1++;
+            temp=temp->next;
+        }
+        else 
+        {
+            count2++;
+            temp=temp->next;
+        }
+    }
+    
+    temp=head;
+    while(temp!=NULL)
+    {
+        if(count0--)
+        {
+            temp->val=0;
+            temp=temp->next;
+        }
+        else if(count1--)
+        {
+            temp->val=1;
+            temp=temp->next;
+        }
+        else if(count2--)
+        {
+            temp->val=2;
+            temp=temp->next;
+        }
+    }
+    return head;
+}
+
+ListNode*sort012opt(ListNode*head)
+{
+    if(head==NULL || head->next==NULL)
+    return head;
+    
+    ListNode*zeroh=new ListNode(0);
+    ListNode*zerot=zeroh;
+    ListNode*oneh=new ListNode(0);
+    ListNode*onet=oneh;
+    ListNode*twoh=new ListNode(0);
+    ListNode*twot=twoh;
+    ListNode*temp=head;
+    while(temp!=NULL)
+    {
+        if(temp->val==0)
+        {
+            zerot->next=temp;
+            temp=temp->next;
+            zerot=zerot->next;
+        }
+        else if(temp->val==1)
+        {
+            onet->next=temp;
+            temp=temp->next;
+            onet=onet->next;
+        }
+        else
+        {
+            twot->next=temp;
+            temp=temp->next;
+            twot=twot->next;
+        }
+    }
+    
+    zerot->next=oneh->next!=NULL ? oneh->next : twoh->next;
+    onet->next=twoh->next;
+    twot->next=NULL;
+    head=zeroh->next;
+    delete (zeroh);
+    delete (oneh);
+    delete (twoh);
+    
+    return head;
+}
+
+//------------------------------------------------------------------------------
+bool checkpalindrome(vector<int>&arr)
+{
+    int n=arr.size();
+    int start=0;
+    int end=n-1;
+    while(start<=end)
+    {
+        if(arr[start]!=arr[end])
+        return false;
+        
+        start++;
+        end--;
+    }
+    return true;
+}
+bool palindromearray(ListNode*head)
+{
+    if(head==NULL || head->next==NULL)
+    return true;
+    
+    ListNode*temp=head;
+    vector<int>ans;
+    while(temp!=NULL)
+    {
+        arr.push_back(temp->val);
+        temp=temp->next;
+    }
+    
+    bool ans=checkpalindrome(arr);
+    if(ans)
+    return true;
+    
+    return false;
+}
+
+bool palindromestack(ListNode*head)
+{
+    if(head==NULL || head->next==NULL)
+    return true;
+    
+    stack<int>st;
+    ListNode*temp=head;
+    while(temp!=NULL)
+    {
+        st.push(temp->val);
+        temp=temp->next;
+    }
+    
+    temp=head;
+    while(temp1=NULL)
+    {
+        if(temp->val!=st.top())
+        return false;
+        
+        temp=temp->next;
+        st.pop();
+    }
+    return true;
+}
+
+bo0l palindromereverse(ListNode*head)
+{
+    if(head==NULL || head->next==NULL)
+    return true;
+    
+    ListNode*slow=head;
+    ListNode*fast=head;
+    ListNode*pre=NULL;
+    while(fast!=NULL && fast->next!=NULL)
+    {
+        pre=slow;
+        slow=slow->next;
+        fast=fast->next->next;
+    }
+    
+    ListNode*first=head;
+    pre->next=NULL;
+    ListNode*second=reverserec(slow->next);
+    
+    while(second!=NULL)
+    {
+        if(first->val!=second->val)
+        return false;
+        
+        first=first->next;
+        second=second->next;
+    }
+    return true;
+
+}
+
+//------------------------------------------------------------------------------
+int findtwinsum(vector<int>&arr)
+{
+    int n=arr.size();
+    int start=0;
+    int end=n-1;
+    int maxi=INT_MIN;
+    while(start<=end)
+    {
+        maxi=max(maxi, arr[start]+arr[end]);
+        start++;
+        end--;
+    }
+    return maxi;
+}
+int maxitwinsum(ListNode*head)
+{
+    if(head==NULL || head->next==NULL)
+    return head->val;
+    
+    vector<int>arr;
+    ListNode*temp=head;
+    while(temp!=NULL)
+    {
+        arr.push_back(temp->val);
+        temp=temp->next;
+    }
+    
+    int ans=findtwinsum(arr);
+    
+    return ans;
+}
+
+int maxitwinsumstack(ListNode*head)
+{
+    if(head==NULL  || head->next==NULL)
+    return head->val;
+    
+    stack<int>st;
+    ListNode*temp=head;
+    while(temp!=NULL)
+    {
+        st.push(temp->val);
+        temp=temp->next;
+    }
+    
+    temp=head;
+    int half=st.size()/2;
+    int maxi=INT_MIN;
+    while(half--)
+    {
+        maxi=max(maxi, temp->val+st.top());
+        st.pop();
+        temp=temp->next;
+    }
+    return maxi;
+}
+
+int maxitwinsumrev(ListNode*head)
+{
+    if(head==NULL  || head->next==NULL)
+    return head->val;
+    
+    ListNode*slow=head;
+    ListNode*fast=head;
+    ListNode*pre=NULL;
+    while(fast!=NULL && fast->next!=NULL)
+    {
+        pre=slow;
+        slow=slow->next;
+        fast=fast->next->next;
+    }
+    
+    ListNode*first=head;
+    pre->next=NULL;
+    ListNode*second=reverserec(slow->next);
+    int maxi=-1;
+    while(second!=NULL)
+    {
+        maxi=max(maxi, first->val+second->val);
+        
+        first=first->next;
+        second=second->next;
+    }
+    return maxi;
+}
+
+
+//------------------------------------------------------------------------------
+ListNode*swappairwise(ListNode*head)
+{
+    if(head==NULL  || head->next==NULL)
+    return head;
+    
+    ListNode*curr=head;
+    ListNode*pre=NULL;
+    int count=0;
+    while(curr!=NULL && count<2)
+    {
+        ListNode*nextn=curr->next;
+        curr->next=pre;
+        pre=curr;
+        cur=cur->next;
+        count++;
+    }
+    
+    if(nextn!=NULL)
+    {
+        head->next=swappairwise(nextn);
+    }
+    
+    return pre;
+}
+
+
+//------------------------------------------------------------------------------
+ListNode*reverseKgroup(ListNode*head, int k)
+{
+    if(head==NULL  || head->next==NULL)
+    return head;
+    
+    ListNode*curr=head;
+    ListNode*pre=NULL;
+    int coun=0;
+    while(curr!=NULL && count<k)
+    {
+        ListNode*nextn=curr->next;
+        curr->next=pre;
+        pre=curr;
+        cur=cur->next;
+        count++;
+    }
+    
+    if(nextn!=NULL)
+    {
+        head->next=reverseKgroup(nextn, k);
+    }
+    
+    return pre;
+}
+
+//------------------------------------------------------------------------------
+ListNode*addlist(ListNode*head1, ListNode*head2)
+{
+    if(head2==NULL)
+    return head1;
+    
+    if(head1==NULL)
+    return head2;
+    
+    ListNode*dummy=new ListNode(0);
+    ListNode*tail=dummy;
+    ListNode*temp1=head1;
+    ListNode*temp2=head2;
+    int carry=0;
+    while(temp1!=NULL && temp2!=NULL)
+    {
+        int sum=carry;
+        if(temp1!=NULL)
+        {
+            sum+=temp1->val;
+            temp1=temp1->next;
+        }
+        
+        if(temp2!=NULL)
+        {
+            sum+=temp2->val;
+            temp2=temp2->next;
+        }
+        
+        ListNode*newnode=new ListNode(sum%10);
+        tail->next=newnode;
+        tail=tail->next;
+        carry=sum/10;
+    }
+    
+    if(carry)
+    {
+        tail->next=new ListNode(carry);
+    }
+    
+    return dummy->next;
+}
+
+ListNode*addlistsecond(ListNode*head1, ListNode*head2)
+{
+    if(head2==NULL)
+    return head1;
+    
+    if(head1==NULL)
+    return head2;
+    
+    head1=reverseit(head1);
+    head2=reverseit(head2);
+    
+    ListNode*dummy=new ListNode(0);
+    ListNode*tail=dummy;
+    ListNode*temp1=head1;
+    ListNode*temp2=head2;
+    int carry=0;
+    while(temp1!=NULL && temp2!=NULL)
+    {
+        int sum=carry;
+        if(temp1!=NULL)
+        {
+            sum+=temp1->val;
+            temp1=temp1->next;
+        }
+        
+        if(temp2!=NULL)
+        {
+            sum+=temp2->val;
+            temp2=temp2->next;
+        }
+        
+        ListNode*newnode=new ListNode(sum%10);
+        tail->next=newnode;
+        tail=tail->next;
+        carry=sum/10;
+    }
+    
+    if(carry)
+    {
+        tail->next=new ListNode(carry);
+    }
+    
+    
+    return reverseit(dummy->next);
+}
+
+ListNode*addlistsecond(ListNode*head1, ListNode*head2)
+{
+    if(head2==NULL)
+    return head1;
+    
+    if(head1==NULL)
+    return head2;
+    
+    stack<int>st2;
+    stack<int>st2;
+    
+    ListNode*temp1=head1;
+    while(temp1!=NULL)
+    {
+        st1.push(temp1->val);
+        temp1=temp1->next;
+    }
+    
+    ListNode*temp2=head1;
+    while(temp2!=NULL)
+    {
+        st2.push(temp2->val);
+        temp2=temp2->next;
+    }
+    
+    
+    
+    ListNode*dummy=new ListNode(0);
+    ListNode*tail=dummy;
+
+    int carry=0;
+    while(!st1.empty() && !st2.empty())
+    {
+        int sum=carry;
+        if(!st1.empty())
+        {
+            sum+=st1.top();
+            st1.pop();
+        }
+        
+        if(!st2.empty())
+        {
+            sum+=st2.top();
+            st2.pop();
+        }
+        
+        ListNode*newnode=new ListNode(sum%10);
+        tail->next=newnode;
+        tail=tail->next;
+        carry=sum/10;
+    }
+    
+    if(carry)
+    {
+        tail->next=new ListNode(carry);
+    }
+    
+    
+    return reverseit(dummy->next);
+}
+
+// ------------------------------------------------------------------------------
+ListNode*mergeRec(ListNode*head1, ListNode*head2)
+{
+    if(head1==NULL)
+    return head2;
+    
+    if(head2==NULL)
+    return head1;
+    
+    if(head1->val<head2->val)
+    {
+        head1->next=mergeRec(head->next, head2);
+        return head1;
+    }
+    else 
+    {
+        head2->next=mergeRec(head1, head2->next);
+        return head2;
+    }
+}
+ListNode*mergeKsorted(vector<ListNode*>list)
+{
+    if(list.size()==0)
+    return NULL;
+    
+    if(list.size()==1)
+    return list[0];
+    
+    ListNode*ans=mergeRec(list[0], list[1]);
+    
+    for(int i=2; i<list.size(); i++)
+    {
+        ans=mergeKsorted(list[i], ans);
+    }
+    return ans;
+}
+
+ListNode*mergeRec(ListNode*head1, ListNode*head2)
+{
+    if(head1==NULL)
+    return head2;
+    
+    if(head2==NULL)
+    return head1;
+    
+    if(head1->val<head2->val)
+    {
+        head1->next=mergeRec(head->next, head2);
+        return head1;
+    }
+    else 
+    {
+        head2->next=mergeRec(head1, head2->next);
+        return head2;
+    }
+}
+ListNode*partitionlist(vector<ListNode*>list, int start, int end)
+{
+    if(start>end)
+    return NULL;
+    
+    int mid=start+(end-start)/2;
+    
+    ListNode*l1=partitionlist(list, start, mid);
+    ListNode*l2=partitionlist(list, mid+1, end);
+    
+    return mergeRec(l1, l2);
+}
+ListNode*mergeKsorted(vector<ListNode*>list)
+{
+    if(list.size()==0)
+    return NULL;
+    
+    if(list.size()==1)
+    return list[0];
+    
+    return partitionlist(list, 0, list.size()-1);
+}
+
+//------------------------------------------------------------------------------ 
+ListNode*deleteNode(ListNode*node)
+{
+    if(node==NULL || node->next==NULL)
+    return NULL;
+    
+    ListNode*pre=NULL;
+    while(node!=NULL && node->next!=NULL)
+    {
+        node->val=node->next->val;
+        pre=node;
+        node=node->next;
+    }
+    pre->next=NULL;
+    delete (node);
+}
+
+//------------------------------------------------------------------------------
+TreeNode*slove(vector<int>&ans, int start, int end)
+{
+    if(start>end)
+    return NULL;
+    
+    int mid=start+(end-start)/2;
+    
+    Node*root=new Node(ans[mid]);
+    root->left=slove(ans, start, mid-1);
+    root->right=slove(ans, mid+1, end);
+    return root;
+}
+TreeNode*sortedlisttoBST(listNode*head)
+{
+    if(head==NULL)
+    return NULL;
+    
+    if(head->next==NULL)
+    return new TreeNode(head->val);
+    
+    vector<int>ans;
+    while(head!=NULL)
+    {
+        ans.push_back(head->val);
+        head=head->next;
+    }
+    return slove(ans, 0, ans.size()-1);
+}
+
+TreeNode*sortedlisttoBST(ListNode*head)
+{
+    if(head==NULL)
+    return NULL;
+    
+    if(head->next==NULL)
+    return new TreeNode(head->val);
+    
+    ListNode*slow=head;
+    ListNode*fast=head;
+    ListNode*pre=NULL;
+    while(fast!=NULL && fast->next!=NULL)
+    {
+        pre=slow;
+        slow=slow->next;
+        fast=fast->next->next;
+    }
+    
+    TreeNode*root=new TreeNode(slow->val);
+    pre->next=NULL;
+    
+    root->left=sortedlisttoBST(head);
+    root->right=sortedlisttoBST(slow->next);
+    
+    return root;
+}
+
+//------------------------------------------------------------------------------
+
+ListNode*intersectionNode(ListNode*head1, ListNode*head2)
+{
+    int len1=lengtList(head1);
+    int len2=lengtList(head2);
+    ListNode*ptr1=head1;
+    ListNode*ptr2=head2;
+    if(len1>len2)
+    {
+        while(len1-len2)
+        {
+            ptr1=ptr1->next;
+        }
+    }
+    if(len2>len1)
+    {
+        while(len2-len1)
+        {
+            ptr2=ptr2->next;
+        }
+    }
+    while(ptr1!=ptr2)
+    {
+        ptr1=ptr1->next;
+        ptr2=ptr2->next;
+    }
+    return ptr1;
+}
+
+ListNode*intersectionNode(ListNode*head1, ListNode*head2)
+{
+    ListNode*a=head1;
+    ListNode*b=head2;
+    while(a!=b)
+    {
+        if(a==NULL)
+        {
+            a=head2;
+        }
+        else
+        {
+            a=a->next;
+        }
+        if(b==NULL)
+        {
+            b=head1;
+        }
+        else
+        {
+            b=b->next;
+        }
+    }
+    return a;
+}
+
+//------
+bool identicallist(ListNode*head1, ListNode*head2)
+{
+    ListNode*temp1=head1;
+    ListNode*temp2=head2;
+    int count1=0;
+    int count1=0;
+    while(temp1!=NULL)
+    {
+        count1++;
+        temp1=temp1->next;
+    }
+    while(temp2!=NULL)
+    {
+        count2++;
+        temp2=temp2->next;
+    }
+    if(count2!=count1)
+    return false;
+    while(temp1!=NULL && temp2!=NULL)
+    {
+        if(temp1->val!=temp2->val)
+        {
+            return false;
+        }
+        temp1=temp1->next;
+        temp2=temp2->next;
+    }
+    return true;
+}
+
+
+//------------------------------------------------------------------------------
+ListNode*deletduplicate(ListNode*head)
+{
+    if(head==NULL || head->next==NULL)
+    return head;
+    
+    ListNode*newhead=deletduplicate(head->next);
+    if(head->val==newhead->val)
+    {
+        return newhead;
+    }
+    else
+    {
+        head->next=newhead;
+        return head;
+    }
+}
+
+ListNode*removeduplicate(ListNode*head)  
+{
+    if(head==NULL && head->next==NULL)
+    return head;
+    
+    ListNode*temp=head;
+    while(temp->next!=NULL)
+    {
+        if(temp->val==temp->next->val)
+        {
+            ListNode*del=temp->next;
+            temp->next=temp->next->next;
+            delete del;
+        }
+        else
+        {
+            temp=temp->next;
+        }
+    }  
+    return head;
+}
+
+//------------------------------------------------------------------------------
+ListNode*partitionoflist(ListNode*head, int x)
+{
+    if(head==NULL || head->next==NULL)
+    return head;
+    
+    ListNode*small=new ListNode(0);
+    ListNode*smallt=small;
+    ListNode*large=new ListNode(0);
+    ListNode*larget=large;
+    ListNode*temp=head;
+    while(temp!=NULL)
+    {
+        if(temp->val<x)
+        {
+            smallt->next=temp;
+            smallt=smallt->next;
+            temp=temp->next;
+        }
+        else
+        {
+            larget->next=temp;
+            temp=temp->next;
+            larget=larget->next;
+        }
+    }
+    
+    smallt->next=large->next ? large->next : NULL;
+    larget->next=NULL;
+    head=small->next;
+    delete (small);
+    delete (large);
+    
+    return head;
+    
+}
+
+//------------------------------------------------------------------------------
+ListNode*swapkfromendstart(ListNode*head, int k) 
+{
+    if(head==NULL || head->next==NULL)
+    return head;
+    
+    int len=0;
+    ListNode*temp=head;
+    while(temp!=NULL)
+    {
+        len++;
+        temp=temp->next;
+    }
+    
+    if(len==k)
+    return head;
+    
+    int first=len-k+1;
+    ListNode*node1=head;
+    while(first>1)
+    {
+        node1=node1->next;
+        first--;
+    }
+    
+    int second=k;
+    ListNode*node2=head;
+    while(second>1)
+    {
+        node2=node2->next;
+        second--;
+    }
+    
+    swap(node1->val, node2->val);
+    return head;
+    
+}
+
+ListNode*swapkfromendstart(ListNode*head, int k)
+{
+    if(head==NULL || head->next=NULL)
+    return head;
+    
+    ListNode*node1=NULL;
+    ListNode*node2=NULL;
+    
+    ListNode*temp=head;
+    while(temp!=NULL)
+    {
+        k--;
+        temp=temp->next;
+        if(k==0)
+        {
+            node1=temp->val;
+            node2=head;
+        }
+        
+        if(node2!=NULL)
+        {
+            node2=node2->next;
+        }
+    }
+    
+    swap(node2->val, node1->val);
+    
+    return head;
+}
+
+
+//------------------------------------------------------------------------------
+ListNode*removekthfromend(ListNode*head, int k)
+{
+    if(head==NULL || head->next==NULL)
+    return head;
+    
+    int len=0;
+    ListNode*temp=head;
+    while(temp!=NULL)
+    {
+        len++;
+        temp=temp->next;
+    }
+    
+    if(len==k)
+    {
+        ListNode*temp=head->next;
+        delete (head);
+        return temp;
+    }
+    
+    int start=len-k;
+    ListNode*temp=head;
+    ListNode*pre=NULL;
+    while(start--)
+    {
+        pre=temp;
+        temp=temp->next;
+    }
+    
+    pre->next=temp->next;
+    delete (temp);
+    return head;
+}
+
+ListNode*removekthfromend(ListNode*head, int k)
+{
+    if(head==NULL || head->next==NULL)
+    return head;
+    
+    ListNode*temp=head;
+    for(int i=1; i<k; i++)
+    temp=temp->next;
+    
+    if(temp==NULL)
+    {
+        ListNode*ans=head->next;
+        delete (head);
+        return ans;
+    }
+    
+    ListNode*pre=head;
+    while(temp!=NULL && temp->next!=NULL)
+    {
+        pre=pre->next;
+        temp=temp->next;
+    }
+    
+    ListNode*del=pre->next;
+    pre->next=pre->next->next;
+    
+    delete (del);
+    return head;
+}
+
+
+

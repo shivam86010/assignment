@@ -1,0 +1,810 @@
+/*
+ Difference between Procedural Language and Object-Oriented Programming (OOP):
+Procedural Language: Code is organized into functions, with a linear top-down approach.
+OOP: Code is organized around objects that combine data and behavior, focusing on encapsulation, inheritance, and polymorphism.
+
+// what OOP :
+Pointer: A variable that stores the address of another variable.
+Enables dynamic memory management, efficient array manipulation, and pointers to functions or classes.
+int var = 10;
+int* ptr = &var;
+cout << *ptr; 
+
+Class: A user-defined data type containing attributes and methods.class is blueprint of object, class is discription of object.
+no physical existance of class 
+
+Object:Object is real world entity. Object is instance of a class.
+
+Inline Function: its a request to the compiler to replace the function call with its code.
+Reduces overhead of small, frequently used functions.
+
+Default Parameter in Function: Allows setting default values for parameters in a function.
+Use: Simplifies function calls.
+
+Access Specifier: Determines access level of class members.
+Types:
+Public: Accessible anywhere.
+Private: Accessible only within the class.
+Protected: Accessible within the class and derived classes.
+
+Getter and Setter Function: It is metod to Access and modify private data members.
+class Student {
+    private:
+    int roll;
+    public:
+    int getRollNumber() 
+    {
+        return roll;
+    }
+    void setRollNumber(int a) 
+    { 
+        rollNumber = a;
+    }
+};
+
+Difference between Private and Protected:
+Private: Not accessible outside the class.
+Protected: Accessible in derived classes.
+
+Constructor: A special member function that initializes the values of data member. there are no return type, name of Constructor
+are same as class name
+Purpose: Sets initial values for an object’s data members.
+
+Types of Constructors:
+Default: No parameters.
+Parameterized: Takes arguments to initialize data members.
+Copy: Creates a new object by copying another object.
+
+Deep Copy vs. Shallow Copy:
+Shallow Copy: Copies the memory address.
+Deep Copy: Copies the actual values to create an independent object.
+
+'this' Keyword: this Keyword is a Pointer to point the current object.
+class Box {
+    int len;
+    public:
+    void setLength(int len) 
+    {
+        this->len = len;
+    }
+};
+
+Encapsulation: Wrapping data and methods into a single unit.
+
+Inheritance :inherite tha method and Properties of parent class.
+class Vehicle {
+    //
+};
+class Car : public Vehicle {
+    
+}; 
+
+Types of Inheritance: Single, Multiple, Multilevel, Hierarchical, Hybrid
+
+Polymorphism: Polymorphism word is the combination of "poly," which means many + "morphs," which means forms, which together
+means many forms. Polymorphism in C++ is when the behavior of the same object or function is different in different contexts. 
+
+Function/Method Overloading: Multiple methods with the same name but different parameters.
+
+int add(int x, int y) 
+{ 
+    return x + y; 
+}
+double add(double x, double y) 
+{ 
+    return x + y; 
+}
+
+Operator Overloading: Allows redefining operators for user-defined types.(means when given to number than + operator add both and 
+give two string than concatinate the string. )
+
+Abstraction: Hides complex details, -or- hide the implementation detail. exposes only necessary parts.
+
+
+
+
+HTML Concepts
+HTML (HyperText Markup Language):language used to create web pages. HTML structures content with elements represented by tags.
+
+Metadata in HTML: Information about the document that isn’t displayed on the page but is used by browsers and search engines.
+
+Doctype in HTML: Declares the HTML version used in the document.
+
+Common HTML Tags:
+
+<a>: Creates hyperlinks.
+<p>: Defines a paragraph.
+<h1> to <h6>: Headers from largest (h1) to smallest (h6).
+<pre>: Preserves whitespace formatting.
+
+Table Tags:
+
+<table>: Defines a table.
+<th>: Table header.
+<tr>: Table row.
+<td>: Table data cell.
+
+Form Tags and Input Types: Used to collect user inputs.
+Common Input Types: text, email, password, phone date file checkbox, radio.
+<input type="text" name="username" placeholder="Enter Username">
+
+
+Select and Option Tags:
+Allows users to select from a list of options.
+
+<select name="colors">
+    <option value="red">Red</option>
+    <option value="green">Green</option>
+    <option value="blue">Blue</option>
+</select>
+
+Inline and Block Elements in HTML:
+Inline: Takes up only the space of content (e.g., <a>, <span>).
+Block: Occupies full width (e.g., <div>, <p>).
+
+CSS Concepts 
+CSS (Cascading Style Sheets):
+
+Definition: A language used to style HTML elements. it is use to add the style of our webpage.
+
+Selectors in CSS:
+Types:
+Tag Selector: p { color: blue; }
+Class Selector: .myClass { font-size: 20px; }
+ID Selector: #myID { text-align: center; }
+
+CSS Styles:
+Inline CSS: Style directly within an HTML tag.
+<p style="color: red;">This is red text.</p>
+
+Style Tag: Defined in the <head> section.
+<style>
+    p { color: blue; }
+</style>
+
+External Stylesheet: Linked CSS file.
+<link rel="stylesheet" href="styles.css">
+
+JavaScript Concepts :
+javascript is synchronous single threaded language.
+Everything in JavaScript happens inside the execution context .
+
+Difference between let const and var:
+let, const : ES6, not attached to window, braces scope.
+var: ES5, attached to itself window, global scope.
+
+Difference between == and ===:
+==: Loose equality (converts types before comparing) -or- only check the data not type 
+===: Strict equality (compares without type conversion).-or- check both data and type
+
+undefined and not defined : In JavaScript, they both are related to memory space . If the variable name which is being accessed
+doesn’t exist in memory space then it would be not defined, and if exists in memory space but hasn’t been assigned any value till
+now, then it would be undefined.
+---------------or--------------------- 
+A variable that has been declared but not assigned a value is undefined . A variable that has not been declared at all is 
+not defined
+
+Falsy Values:
+false,0,"" (empty string),null,undefined,NaN
+Truthy values : are any values that are not falsy.
+
+Hoisting:Hoisting is a default behaviour of javascript where declarations of Variables and function declarations are moved
+to the top before code execution.
+use :
+You can declare functions for handling events like button clicks, form submissions, or updating the cart. Because
+function declarations are hoisted, you can define them after they are used in the code.
+addToCartButton.addEventListener('click', addToCart); // Works because of hoisting
+function addToCart() {
+    // Logic to add product to the cart
+}
+
+Function Definition vs. Function Declaration -or- function statement:
+Function Declaration can be called before it’s defined; Function Expression cannot. hoisting is main difference between Function
+statement and Function Expression. and Function statement Must have a name but Function Expression Can be anonymous or named.
+Function Declaration: 
+function abc() {
+    return "Hello";
+}
+abc();
+
+Function Expression:
+const a = function() {
+    return "Hello";
+};
+a();
+
+named function Expression : 
+cont d= function abc()
+{
+    console.log("hello");
+}
+d();
+
+anonmus function : function without name 
+function ()
+{
+    console.log("hello world");
+}
+Use Cases: Anonymous functions are commonly used for callbacks, closures, and event handling.
+As Callbacks
+Anonymous functions are frequently used as callbacks in asynchronous operations or event handling:
+setTimeout(function() {
+    console.log("This message is displayed after 2 seconds.");
+}, 2000);
+
+In Event Listeners You can use anonymous functions to handle events:
+const button = document.getElementById("myButton");
+
+button.addEventListener("click", function() {
+    alert("Button was clicked!");
+});
+Disadvantages
+Debugging: Since anonymous functions do not have names, debugging can be more challenging. Stack traces may not clearly 
+indicate where the error occurred.
+Reusability: They cannot be reused elsewhere in the code since they lack a name.
+
+
+IIFE : 
+IIFE (Immediately Invoked Function Expression) is a JavaScript function that is defined and executed immediately after its 
+creation. It allows you to create a local scope for your variables,
+(function() {
+    // Code to be executed immediately
+})();
+Variables defined inside an IIFE cannot be accessed from the outside, creating a private scope
+
+Closure:combination of function boundle together its lexical scope.
+function z()
+{
+    let a=10;
+    function y()
+    {
+        let b=20;
+        function x()
+        {
+            console.log(a, b);
+        }
+        x();
+    }
+    y();
+}
+z();
+
+
+difference between function and method : 
+Functions are independent blocks of code that perform a specific task and can be reused throughout the program.
+Methods are functions that belong to an object and typically operate on the object's data or state.
+Feature	            Function	                                 Method
+Definition:	   A standalone block of code	         A function associated with an object
+Context	:      No implicit this context	             Has an implicit this context, refers to the object it belongs to
+Invocation :   Called by name with parentheses	     Called on an object using dot or bracket notation
+Scope:	       Can be globally or locally scoped	 Scope is usually within the object
+Purpose :	  General-purpose code	                 Typically operates on data within the object
+
+setTimeout and setInterval
+Purpose:Executes code once after a delay	Executes code repeatedly at intervals
+Syntax	:   setTimeout(function, delay)	    setInterval(function, interval)
+Execution:	Single execution                Repeated execution
+Stopping:	Automatically stops	            Needs clearInterval() to stop
+Return Value :	Timeout ID	                Interval ID
+use : 
+Hiding Loading Spinners
+Use setTimeout to hide loading spinners after a certain period if an operation takes longer than expected, providing a 
+fallback for users.
+Example: If an API call takes too long, hide the spinner and show a message to try again.
+setTimeout(() => {
+    if (loading) {
+        document.getElementById("spinner").style.display = "none";
+        alert("Loading is taking longer than expected. Please try again.");
+    }
+}, 5000); // Check after 5 seconds
+
+setTimeout :
+Timeout for Session Expiration
+Automatically log users out after a period of inactivity to enhance security.
+Example: If a user is inactive for a certain time, display a warning and log them out.
+setTimeout(() => {
+    alert("Your session is about to expire. Please save your work.");
+    // Optionally log out the user
+}, 1800000); // 30 minutes
+
+setInterval :
+Displaying Countdown Timers
+Use setInterval to create countdown timers for flash sales or limited-time offers, creating urgency for users.
+Example: Show a countdown for a promotional offer.
+let timeLeft = 300; // 5 minutes in seconds
+const countdown = setInterval(() => {
+    if (timeLeft <= 0) {
+        clearInterval(countdown);
+        alert("The promotion has ended!");
+    } else {
+        timeLeft--;
+        document.getElementById("countdown").innerText = timeLeft + " seconds left";
+    }
+}, 1000); // Update every second
+
+arrow function : ES6 introduced a new and shorter way of declaring an anonymous function, which is known as Arrow Functions. 
+In an Arrow function, everything remains the same, except here we don’t need the function keyword also. Here, we define the 
+function by a single parenthesis and then ‘=>’ followed by the functions body 
+ let a = () => console.log("Welcome ");
+a();
+
+
+Higher-order function : takes one or more functions as arguments. Returns a function as its result.
+
+
+first class function : function are treated like a variable . you can pass as a argument and return form it .
+    ------------or-------------------
+first class functions are the first class citizens and are treated as the function  which can be stored in 
+variables passed as an argument in functions, returned from other functions
+//store them 
+let a=function sey()
+{
+    console.log("welcome");
+}
+a();
+
+//pass function as argument
+function sey(a) {
+    console.log("welcome");
+    a();  // Call the function passed as an argument
+}
+
+sey(function abc() {
+    console.log("hello");
+});
+
+//return function 
+function abc(a)
+{
+    return function xyz()
+    {
+        console.log("welcome");
+    }
+}
+let a=abc();
+a();
+
+difference between normal function and arrow function :
+In regular functions, you can access all passed arguments using the arguments object, which is an array-like object containing
+each argument passed to the function.
+function showArgs() {
+    console.log(arguments);
+}
+showArgs(1, 2, 3); 
+
+In regular functions, duplicate named parameters are allowed but not recommended. The last occurrence of the parameter overwrites
+previous ones, and only its value is used.
+function example(a, b, a) {
+    console.log(a, b);
+}
+example(1, 2, 3);
+
+In regular functions, function declarations are hoisted to the top of their scope, allowing them to be called before they’re 
+defined in the code.
+greet(); // Output: Hello Geeks!
+
+function greet() {
+    console.log('Hello Geeks!');
+}
+
+Regular functions can be used as constructors with the new keyword, allowing the creation of new object instances. The new
+keyword sets this to the new object inside
+function Person(name) {
+    this.name = name;
+}
+
+const p = new Person('Geeks'); // Creates a new Person object
+console.log(p.name); 
+
+arrow function : 
+Arrow functions do not have their own arguments object. To access arguments in arrow functions, use rest parameters (…args) to 
+collect all arguments into an array.
+const showArgs = (...args) => {
+    console.log(args);
+};
+showArgs(1, 2, 3); 
+
+arrow functions do not allow duplicate named parameters, even in non-strict mode, and will throw a syntax error if duplicates are
+present. Always use unique parameter names in arrow functions.
+const example = (a, b, a) => {
+    console.log(a);
+}; 
+// SyntaxError: Duplicate parameter name not allowed in this context
+
+Arrow functions are not hoisted like regular function declarations. They are treated as variables, so they cannot be called
+before being defined due to the temporal dead zone.
+greet(); // ReferenceError: Cannot access 'greet' before initialization
+
+const greet = () => {
+    console.log('Hello!');
+};
+
+Arrow functions cannot be used as constructors and do not support the new keyword. Attempting to use new with an arrow function
+will result in a TypeError.
+const Person = () => {};
+const p = new Person(); // TypeError: Person is not a constructor
+
+
+callback function : A callback function in JavaScript is a function that is passed as an argument to another function and is
+intended to be executed after some operation has been completed. This pattern is commonly used for handling asynchronous 
+operations, such as when working with events, API calls, or timers.
+Callback functions are a powerful feature in JavaScript that enable asynchronous programming and help manage control flow.
+    ------------or-------------------
+A callback function is a function passed into another function as an argument or return a function .
+A function that accepts other functions as arguments is called a higher-order function
+function x()
+{
+    
+}
+x(function y(){
+    
+})
+function y is callback function 
+    
+map filter reduce function : it is higher order function 
+map is use to transfrom the array it return new array 
+const arr=[1,2,3,4];
+function double(x)
+{
+    return 2*x;
+}
+const ans=arr.map(double);
+
+filter : 
+function iseven(x)
+{
+    return x%2==0;
+}
+const output=arr.filter(iseven);
+console.log(output);
+
+reduce : 
+const output=arr.reduce(function(acc, curr){
+    acc=acc+curr;
+    return acc;
+}, 0);
+
+const output=arr.reduce(function(max, curr){
+    if(curr>max)
+        max=curr;
+    }
+    return max;
+}, 0)
+consloe.log(output);
+    
+what is event loop  : continouse monitor the call stack and callback queue 
+--callback queue 
+--microtask queue--higher priority than callback queue- promise mutation abjarbar  
+memory heap-> in memory heap assigne all variable and function to a memory 
+
+call apply and bind method in javascript 
+call :  borrow methods from one object and use them on another
+lat name={
+    firstname :"shivam"
+    lastname: "shing",
+    //print : function(home){
+        console.log(this.firstname +""+ this.lastname+""+ home);
+    //}
+}
+let print=function(home, country)
+{
+    console.log(this.firstname +""+ this.lastname+""+ home+""+country);
+}
+let name2={
+    firstname: "shyam",
+    lastname: "singh",
+}
+//name.print.call(name2)
+print.call(name2, "mumbai");
+
+apply : 
+print.apply(name2, ["mumbai"])
+
+bind : 
+let printname=print.bind(name2, "mumbai");
+printname();
+
+call: Invoke the function with a specific this value and comma-separated arguments.
+apply: Invoke the function with a specific this value and arguments as an array.
+bind: Create a new function with this bound to a specific value (doesn’t invoke immediately).
+
+Callback Hell: Nested callbacks leading to complex code.
+
+
+Promises: 
+In JavaScript, a Promise is an object that represents the eventual completion (or failure) of an asynchronous operation and 
+its resulting value. Promises provide a way to work with asynchronous code, allowing you to write cleaner and more manageable 
+code compared to traditional callback-based approach
+    --or-
+Promises are a powerful way to handle asynchronous operations in JavaScript, providing a more structured approach compared to 
+callbacks.
+They allow you to manage complex asynchronous flows, making code easier to read and maintain.
+With features like chaining and error handling, Promises simplify the handling of asynchronous code, enabling developers to 
+write cleaner and more robust applications.
+ex :
+const myPromise = new Promise((resolve, reject) => {
+    const success = true; // Simulate success or failure
+
+    if (success) {
+        resolve("Operation was successful!");
+    } else {
+        reject("Operation failed.");
+    }
+});
+
+myPromise
+    .then(result => {
+        console.log(result); // Output: "Operation was successful!"
+    })
+    .catch(error => {
+        console.error(error); // Handle error if operation fails
+    });
+
+
+async and await :
+An async function is a function declared with the async keyword. It automatically returns a Promise, even if you return a 
+non-Promise value.
+Inside an async function, you can use the await keyword to pause the execution of the function until the Promise is resolved 
+or rejected.
+await Keyword
+The await keyword can only be used inside an async function. It pauses the execution of the async function and waits for the 
+Promise to resolve or reject.
+When the Promise resolves, await returns the resolved value. If the Promise is rejected, it throws the error, which can be 
+caught using a try...catch block.
+async function fetchData() {
+    try {
+        const response = await fetch("https://api.example.com/data");
+        if (!response.ok) {
+            throw new Error("Network response was not ok");
+        }
+        const data = await response.json();
+        console.log(data);
+    } catch (error) {
+        console.error("Error fetching data:", error);
+    }
+}
+    -------or-------
+async function fetchData() {
+    const response = await fetch("https://api.example.com");
+    const data = await response.json();
+    console.log(data);
+}
+
+difference betweeen promise and async and await :
+Promises:
+A Promise directly returns a Promise object, which represents the eventual completion of the asynchronous operation.
+use :
+Suitable for managing multiple asynchronous operations and chaining them, especially when the operations don't depend on each 
+other.
+
+async/await:
+An async function always returns a Promise. If a value is returned from an async function, it is automatically wrapped in
+a Promise.
+use :
+Ideal for situations where you have multiple dependent asynchronous operations, as it allows you to write cleaner and more 
+understandable code.
+
+//----------------------------------------------------------------------------------------------
+React.js Concepts
+1. React.js:
+
+Definition: A JavaScript library for building user interfaces.
+2. JSX in React.js:
+
+Definition: JavaScript XML, allowing HTML to be written within JavaScript.
+jsx
+Copy code
+const element = <h1>Hello, world!</h1>;
+3. Props:
+
+Definition: Properties passed from parent to child components.
+jsx
+Copy code
+function Welcome(props) {
+    return <h1>Hello, {props.name}</h1>;
+}
+4. State:
+
+Definition: Component-level data that can change over time.
+jsx
+Copy code
+function Counter() {
+    const [count, setCount] = useState(0);
+    return <button onClick={() => setCount(count + 1)}>Clicked {count} times</button>;
+}
+5. Virtual DOM:
+
+Definition: A lightweight copy of the DOM, enabling efficient updates.
+6. Hooks in React.js:
+
+useState: Manages state in functional components.
+useEffect: Handles side effects (like data fetching).
+jsx
+Copy code
+useEffect(() => {
+    document.title = `Count: ${count}`;
+}, [count]);
+7. useMemo and useCallback:
+
+useMemo: Memoizes expensive calculations.
+useCallback: Memoizes functions to avoid unnecessary re-renders.
+8. Pagination in React:
+
+Definition: Dividing content into discrete pages.
+9. Lazy Loading:
+
+Definition: Loads components or resources only when needed.
+jsx
+Copy code
+const LazyComponent = React.lazy(() => import("./Component"));
+10. Router in React.js:
+
+Definition: Manages navigation in single-page applications.
+jsx
+Copy code
+import { BrowserRouter as Router, Route } from 'react-router-dom';
+11. Context API in React.js:
+
+Definition: Shares data between components without prop drilling.
+12. Redux in React.js:
+
+Definition: A state management library for managing global application state.
+javascript
+Copy code
+import { createStore } from 'redux';
+13. Conditional Rendering:
+
+Definition: Render content based on conditions.
+jsx
+Copy code
+{isLoggedIn ? <Logout /> : <Login />}
+Let me know if you need further examples or clarification on any of these concepts!
+
+//----------------------------------------------------------------------------------------------------------------------- 
+
+What is React.js, and why is it used?
+JSX in React.js:
+Explanation of JSX syntax.
+What are props in React?
+State
+What is the virtual DOM?
+Hooks in React.js:
+Overview of hooks and their purpose.
+useState:
+useEffect
+useMemo 
+useCallback:
+Difference between useMemo and useCallback.
+Pagination in React:
+Lazy Loading in React:
+Purpose and implementation of lazy loading.
+Router in React.js:
+What is Context API, and why is it used?
+Drawbacks of Context API:
+Limitations of the Context API.
+What is Redux, and why is it used?
+Passing Props from Child to Parent:
+Explanation of child-to-parent prop passing.
+Explanation of prop drilling and its effects.
+Purpose of lifting state up.
+Explanation of list rendering in React.
+Why keys are used in lists.
+Purpose of Axios in React applications.
+Conditional Rendering in React:
+Explanation of conditional rendering.
+
+
+
+
+
+what is call stack in javscript
+what is window in javascript
+what is this keyword in javscript 
+what is temperoal dead zone in javscript 
+what is garbase collector in javscript 
+
+
+*/
+
+
+/*
+
+ useMemo : the useMemo hook in React is used to cache the result of a function, which can help improve the performance of React 
+ components:
+ The useMemo Hook only runs when one of its dependencies update.
+ The React useMemo Hook returns a memoized value.
+ The useMemo and useCallback Hooks are similar. The main difference is that useMemo returns a memoized value and useCallback 
+ returns a memoized function
+ 
+ 
+ 
+ Radio buttons are grouped by the name attribute .Only one radio button can be selected within a group.
+ checkboxes allow multiple selections at once, as they are designed for that purpose.
+ HTML attributes provide additional information about HTML elements.
+*/
+
+
+/*
+parameter and argument 
+function abc(parameter)
+{  
+    //statement 
+}
+abc(argument);
+
+
+
+what is callback hell 
+inversion of control 
+
+
+what is higher order function 
+a function which take a function as a argument and return a function form it .
+function x()
+{
+    console.log("hello ");
+}
+
+function y(x)
+{
+    x();
+}
+
+
+interpretter->code are executed line by line in a spacific order 
+compiler->
+
+code 
+ parsing -> token ->syntax parser ->it take code and convert in to abstract syntax tree
+ compilation ->jit compilation 
+ execution 
+  
+
+--why we use this keyword
+
+
+what is fetch in javascript 
+
+event bubbling and capturing in javascript 
+event delegation in javascript 
+
+
+debouncing : suppose create a search bar in e-commerce website than search any thing than api will be call one each key will 
+be press if tyou are stop tthis and when useer will be puse the typing than api will be call
+limiting the rate of execution of a particular  function 
+
+*/
+
+
+//------------------------------------------------------------------------------------------------------------ 
+
+/*
+-->Memoizes a function, ensuring the same instance is used across renders unless its dependencies change.
+-->Prevents unnecessary function recreation, which is especially helpful when functions are passed as props to child components, avoiding re-renders caused by reference changes.
+
+2. React.memo:
+-->Memoizes an entire component, preventing re-renders unless its props change.
+-->Works similarly to PureComponent, performing a shallow comparison of props to optimize functional components.
+
+3. useRef:
+-->Allows direct manipulation of DOM elements (e.g., setting focus, scrolling).
+-->Persists values across renders without causing re-renders (e.g., storing previous state values or timers).
+-->Useful for managing mutable objects like WebSocket connections and integrating third-party libraries like D3.js.
+-->Enhances performance by storing data in a ref instead of state, preventing unnecessary re-renders.
+
+4. useMemo:
+-->Memoizes expensive calculations and re-runs them only when dependencies change.
+-->Optimizes performance by preventing recalculations on every render, helping to avoid unnecessary re-renders.
+-->Perfect for caching computed values in scenarios where recalculations can be resource-intensive.
+
+5. useReducer:
+-->Ideal for managing more complex state logic, especially when state depends on previous values.
+-->Takes a reducer function to define state updates based on dispatched actions.
+-->A better alternative to useState for handling intricate state transitions and multiple state updates in tandem.
+
+
+
+
+
+
+*/
