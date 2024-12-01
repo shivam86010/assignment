@@ -1,0 +1,59 @@
+/*
+html : 
+tag : h1, h2---h6 br, p , pre,  hr, b, strong , underline, a, img 
+form : label 
+input : text, gamil, submit, reset, date, password, button 
+select : option 
+list : ordered, unordered (li, ol, ul)
+table : table, tr td , th
+
+//------------------------------------------------------------------------------
+css : 
+selector : tag, (#)id, (.)class 
+styling in css : 
+inline  ; tage mai he  style {}
+external : extra css file create kare ke html se linke 
+internal : head style {}
+
+inline, 
+
+//------------------------------------------------------------------------------
+javascript is programming language  
+javascript is synchronouse single threaded language 
+
+let const and var 
+undefined and notdefined :
+hoisting : 
+function statement and function expression : 
+first class function : 
+anonmouse function : 
+iife : 
+callback : 
+higherorder function :
+closoure : 
+eventloop : 
+map , filter, reduce : 
+settimeout , settimeinterval 
+promise : The Promise object represents the eventual completion (or failure) of an asynchronous operation .
+
+let myPromise = new Promise(function (res, rej) {
+    let flag = true; 
+    if (flag) {
+        res("success");
+    } else {
+        rej("rejected");
+    }
+});
+
+myPromise
+    .then(function (data) {
+        console.log(data);
+    })
+    .catch(function (error) {
+        console.log(error);
+    });
+
+asyn and await keywork : 
+
+
+*/
