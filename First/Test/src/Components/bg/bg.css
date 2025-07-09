@@ -1,0 +1,10 @@
+body{
+  position: relative;
+  overflow-x:hidden;
+  
+}
+.custom{
+  /* scale: 1.02; */
+  transform: translateX(1px) scaleX(1.10);
+
+}

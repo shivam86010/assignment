@@ -15,13 +15,88 @@
 //parity sort 
 //O 1 2 sort 
 //dnf sort 
-//three way partition of array 
+//three way partition of array
+void threeway(int arr[], int n, int a, int b)
+{
+    int start=0;
+    int mid=0;
+    int end=n-1;
+    while(mid<end)
+    {
+        if(arr[mid]<a)
+        {
+            swap(arr[start], arr[mid]);
+            start++;
+            mid++;
+        }
+        else if(arr[mid]>b)
+        {
+            swap(arr[mid], arr[end]);
+            end--;
+        }
+        else 
+        {
+            mid++;
+        }
+    }
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 //find the minimum element in array using bruteforce approach 
 //optimal approach 
 //find the maximum element in array using bruteforce approach 
 //optimal approach
 //second largest element in array bruteforce approach 
-//optimal approach 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+//optimal approach
+
+
 //second smallest element in array bruteforce approach 
 //optimal approach 
 //find the kthsmallest element in array 
@@ -29,7 +104,117 @@
 //Find the Kth Largest Integer in the Array
 //third largest element in array 
 //monotonic array (An array is monotonic if it is either monotone increasing or monotone decreasing.)
-//find unique element in array bruteforce approach  
+//find unique element in array bruteforce approach 
+int unique(int arr[], int n)
+{
+    for(int i=0; i<n; i++)
+    {
+        int count=0;
+        for(int j=i; j<n; j++)
+        {
+            if(arr[i]==arr[j])
+            {
+                count++;
+            }
+        }
+
+        if(count==1)
+        return arr[i];
+    }
+    return -1;
+}
+int uniquebetter(int arr[], int n)
+{
+    unordered_map<int,int>mp;
+    for(int i=0; i<n; i++)
+    {
+        mp[arr[i]]++;
+    }
+
+    for(auto it : mp)
+    {
+        if(it.second==1)
+        return it.first;
+    }
+    return -1;
+}
+int uniqueoptimal(int arr[], int n)
+{
+    int ans=0;
+    for(int i=0; i <n; i++)
+    {
+        ans=ans^arr[i];
+    }
+    return ans;
+}
+int duplicate(int arr[], int n)
+{
+    for(int i=0; i<n; i++)
+    {
+        int count=0;
+        for(int j=i; j<n; j++)
+        {
+            if(arr[i]==arr[j])
+            {
+                count++;
+            }
+        }
+
+        if(count>1)
+        {
+            return arr[i];
+        }
+    }
+    return -1;
+}
+int duplicatebetter(int arr[], int n)
+{
+    unordered_map<int,int>mp;
+    for(int i=0; i<n; i++)
+    {
+        mp[arr[i]]++;
+    }
+
+    for(auto it : mp)
+    {
+        if(it.second>1)
+        {
+            return it.first;
+        }
+    }
+    return -1;
+}
+int optimal(int arr[], int n)
+{
+    int ans=0;
+    for(int i=0; i<n; i++)
+    {
+        ans=ans^arr[i];
+    }
+
+    for(int i=1; i<n; i++)
+    {
+        ans=ans^i;
+    }
+    return ans;
+
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 //better approach 
 //optimal approach 
 //Non Repeating Numbers (means more than one unique element in array )
@@ -68,15 +253,453 @@
 //longest mountain array 
 //contain with most water 
 //majority element bruteforce approach 
-//better approach 
+
+int majoritybrute(int arr[], int n)
+{
+    for(int i=0; i<n; i++)
+    {
+        int count=0;
+        for(int j=i; j<n; j++)
+        {
+            if(arr[i]==arr[j])
+            {
+                count++;
+            }
+        }
+
+        if(count==n/2)
+        {
+            return arr[i];
+        }
+    }
+    return -1;
+}
+
+//better approach
+int majoritybetter(int arr[], int n)
+{
+    unordered_map<int,int>mp;
+    for(int i=0; i<n; i++)
+    {
+        mp[arr[i]]++;
+    }
+
+    for(auto it : mp)
+    {
+        if(it.second==n/2)
+        {
+            return it.first;
+        }
+    }
+    return -1;
+} 
 //optimal approach 
+int majorityoptimal(int arr[], int n)
+{
+    int el;
+    int count=0;
+    for(int i=0; i<n; i++)
+    {
+        if(count==0)
+        {
+            count=1;
+            el=arr[i];
+        }
+        if(el==arr[i])
+        {
+            count++;
+        }
+        else 
+        {
+            count--;
+        }
+    }
+
+    int count1=0;
+    for(int i=0; i<n; i++)
+    {
+        if(el==arr[i])
+        {
+            count1++;
+        }
+    }
+
+    if(count1==n/2)
+    return el;
+
+    return -1;
+}
 //majority-II  bruteforce approach 
+
+
+
+
+int majority(int arr[], int n)
+{
+    for(int i=0; i<n; i++)
+    {
+        int count=0;
+        for(int j=i; j<n; j++)
+        {
+            if(arr[i]==arr[j])
+            {
+                count++;
+            }
+        }
+
+        if(count>n/3)
+        return arr[i];
+    }
+    return -1;
+}
+
+int majoritybetter(int arr[], int n)
+{
+    unordered_map<int, int>mp;
+    for(int i=0; i<n; i++)
+    {
+        mp[arr[i]]++;
+    }
+
+    for(auto it : mp)
+    {
+        if(it.second>n/3)
+        {
+            return it.first;
+        }
+    }
+    return -1;
+}
+int majorityopt(int arr[], int n)
+{
+    int count1=0;
+    int count2=0;
+    int el1, el2;
+    for(int i=0; i<n; i++)
+    {
+        if(count1==0 && el2!=arr[i])
+        {
+            count1=1;
+            el1=arr[i];
+        }
+        else if(count2==0 && el1!=arr[i])
+        {
+            count2=1;
+            el2=arr[i];
+        }
+        else if(el1==arr[i])
+        {
+            count1++;
+        }
+        else if(el2==arr[i])
+        {
+            count2++;
+        }
+        else 
+        {
+            count1--;
+            count2--;
+        }
+    }
+
+    int count3=0;
+    int count4=0;
+    vector<int>ans;
+    for(int i=0; i<n; i++)
+    {
+        if(el1==arr[i])
+        {
+            count3++;
+        }
+        else if(el2==arr[i])
+        {
+            count4++;
+        }
+    }
+
+    if(count3>n/3)
+    ans.push_back(el1);
+
+    if(count4>n/3)
+    ans.push_back(el2);
+
+    return ans;
+}
+
+ListNode*swapPair(ListNode*head)
+{
+    if(head==null || head->next==null)
+    return head;
+
+    ListNode*curr=head;
+    ListNode*pre=nullptr;
+    int count=0;
+    while(curr!=null && count<2)
+    {
+        ListNode*nextn=curr->next;
+        curr->next=pre;
+        pre=curr;
+        curr=curr->next;
+        count++;
+    }
+    return pre;
+}
+void checkpalindrome(int arr[], int n)
+{
+    int start=0;
+    int end=n-1;
+    while(start<=end)
+    {
+        if(arr[start]!=arr[end])
+        return false;
+
+        start++;
+        end--;
+    }
+    return true;
+}
+bool isPalindrome(ListNode*head)
+{
+    if(head==null || head->next==null)
+    return true;
+
+    vector<int>ans;
+    ListNode*temp=head;
+    while(temp!=null)
+    {
+        ans.push_back(temp->val);
+        temp=temp->next;
+    }
+
+    int ispain= checkpalindrome(ans, ans.size()-1);
+
+     if(isPain)
+     {
+        return true;
+     }
+     return false;
+}
+
+ListNode*reverse(ListNode*head)
+{
+    if(head==null || head->next==null)
+    return head;
+
+    ListNode*curr=head;
+    ListNode*pre=null;
+    while(curr->next!=null)
+    {
+        ListNode*nextn=curr->next;
+        curr->next=pre;
+        pre=curr;
+        curr=curr->next;
+    }
+    return pre;
+}
+bool checkPalindrome(ListNode*head)
+{
+    if(head==null || head->next==null)
+    return true;
+
+    ListNode*slow=head;
+    ListNode*fast=head;
+    while(fast!=null && fast->next!=null)
+    {
+        slow=slow->next;
+        fast=fast->next->next;
+    }
+
+    reverse(slow->next);
+    
+    ListNode*temp1=head;
+    ListNode*temp2=sloe->next;
+
+    while(temp1!=null && temp2!=null )
+    {
+        if(temp1->val!=temp2->val)
+        return false;
+
+        temp1=temp1->next;
+        temp2=temp2->next;
+    }
+    return true;
+    
+}
+
+vector<int>coommon(int arr1[], int arr2[], int arr3[], int n)
+{
+    int i=0;
+    int j=0;
+    int k=0;
+    int ptr1=INT_MIN;
+    int ptr2=INT_MIN;
+    int ptr3=INT_MIN;
+    while(i<n && j<n && k<n)
+    {
+        while(i<n && arr1[i]==ptr1)
+        i++;
+
+        while(j<n && arr2[j]==ptr2)
+        j++;
+
+        while(k<n && arr3[k]==ptr3)
+        k++;
+
+        if(arr1[i]==arr2[j] && arr2[j]==arr3[k])
+        {
+            ans.push_back(arr1[i]);
+            ptr1=arr1[i];
+            ptr2=arr2[j];
+            ptr3=arr3[k];
+            i++;
+            j++;
+            k++;
+        }
+        else if(arr1[i]<arr2[j])
+        {
+            ptr1=arr1[i];
+        }
+        else if(arr2[j]<arr3[k])
+        {
+            ptr2=arr2[j];
+            j++;
+        }
+        else 
+        {
+            ptr3=arr3[k];
+            k++;
+        }
+    }
+    return ans;
+}
+vector<int>union(int arr1[], int arr2[], int n, int m)
+{
+    unordered_map<int,int>mp;
+    for(int i=0; i<n; i++)
+    {
+        mp[arr[i]]++;
+        
+    }
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 //better approach 
 //optimal approach 
-//remove duplicate element 
+
 //second version  
 //remove value from array 
-//left rotate array by one place brute force approach 
+//left rotate array by one place brute force approach
+void leftrotat(int arr[], int n)
+{
+    int temp=arr[0];
+    for(int i=1; i<n; i++)
+    {
+        arr[i-1]=arr[i];
+    }
+
+    arr[n-1]=temp;
+}
+void leftrotatebrute(int arr[], itn n, int d)
+{
+    vector<int>temp;
+    for(int i=0; i<d; i++)
+    {
+        temp.push_back(arr[i]);
+    }
+
+    for(int i=d; i<n; i++)
+    {
+        arr[i-d]=arr[i];
+    }
+
+    for(int i=d; i<n; i++)
+    {
+        arr[i-(n-d)]=arr[i];
+    }
+}
+int secondlarget(int arr[], int n)
+{
+    int larget=arr[0];
+    int sec=INT_MIN;
+    for(int i=1; i<n; i++)
+    {
+        if(arr[i]>larget)
+        {
+            sec=larget;
+            larget=arr[i];
+        }
+        else if(larget>arr[i] && arr[i]>sec)
+        {
+            sec=arr[i];
+        }
+    }
+    return sec;
+}
+void sortcolor(int arr[], int n)
+{
+    int start=0;
+    int mid=0;
+    int end=n-1;
+    while(mid<end)
+    {
+        if(arr[mid]==0)
+        {
+            swap(arr[mid], arr[start]);
+            start++;
+            mid++;
+        }
+        else if(arr[mid]==1)
+        {
+            mid++;
+        }
+        else 
+        {
+            swap(arr[mid], arr[end]);
+            end--;
+        }
+    }
+}
+
+void rightrotoptimal(int arr[], int n, int d)
+{
+    reverse(arr, arr+d)
+    reverse(arr+d, arr+n);
+    reverse(arr, arr+n);
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 //optimal approach  
 //right rotate array by one place brute force approach 
 //optimal approach  
@@ -87,7 +710,7 @@
 //squares of a sorted array bruteforce approach 
 //optimal approach 
 //product of itself bruteforce approach  
-//better approach  
+//better approach5  
 //optimal approach 
 //count pairs whose sum is less than target 
 //optimal approach (using sorting and two pointer)
@@ -101,18 +724,308 @@
 //number of pairs of strings with concatenation equal to target
 //optimal approach
 //two sum bruteforce approach 
-//optimal approach 
+int twosum(int arr[], int n, int target)
+{
+    for(int i=0; i<n; i++)
+    {
+        for(int j=i+1; j<n; j++)
+        {
+            if(arr[i]+arr[j]==target)
+            {
+                return 1;
+            }
+        }
+    }
+    return -1;
+}
+//optimal approach
+int twosumbetter(int arr[], int n, int target)
+{
+    unordered_map<int,int>mp;
+    vector<int>ans;
+    for(int i=0; i<n; i++)
+    {
+        if(mp.find(target-arr[i])!=mp.end())
+        {
+            ans.push_back(mp[target-arr[i]]);
+            ans.push_back(i);
+            return ans;
+        }
+
+        mp[arr[i]]=i;
+    }
+    return ans;
+}
+
 //second version of two sum bruteforce approach 
+int twosumoptimal(int arr[], int n, int target)
+{
+    int start=0;
+    int end=n-1;
+    while(start<=end)
+    {
+        if(arr[start]+arr[end]==target)
+        {
+            return 1;
+        }
+        else if(arr[start]+arr[end]>target)
+        {
+            end--;
+        }
+        else 
+        {
+            start++;
+        }
+    }
+    return -1;
+}
+
 //optimal approach 
 //three sum bruteforce approach 
+int threesumbrute(int arr[], int n, int target)
+{
+    for(int i=0; i<n; i++)
+    {
+        for(int j=i+1; j<n; j++)
+        {
+            for(int k=j+1; k<n; k++)
+            {
+                if(arr[i]+arr[j]+arr[k]==target)
+                {
+                    return 1;
+                }
+            }
+        }
+    }
+    return -1;
+}
 //better approach 
 //optimal approach 
+int threesumoptimal(int arr[], int n, int target)
+{
+    sort(arr, arr+n);
+    vector<vector<int>>ans;
+    for(int i=0; i<n-1; i++)
+    {
+        if(i>0 && arr[i]==arr[i-1])
+        continue;
+
+        int start=0;
+        int end=n-1;
+        int sum=target-arr[i];
+
+        if(start<end)
+        {
+            if(arr[start]+arr[end]==sum)
+            {
+                vector<int>temp;
+                temp.push_back(arr[i]);
+                temp.push_back(arr[start]);
+                temp.push_back(arr[end]);
+                ans.push_back(temp);
+                start++;
+                end--;
+
+                while(start<end && arr[start]==arr[start-1])
+                start++;
+
+                while(start<end && arr[end]==arr[end+1])
+                end--;
+            }
+            else if(arr[start]+arr[end]>sum)
+            {
+                end--;
+            }
+            else 
+            {
+                start++;
+            }
+        }
+    }
+    return ans;
+}
 //four sum bruteforce approach 
+int foursum(int arr[], int n, int target)
+{
+    for(int i=0; i<n; i++)
+    {
+        for(int j=i+1; j<n; j++)
+        {
+            for(int k=j+1; k<n; k++)
+            {
+                for(int p=k+1; p<n; p++)
+                {
+                    if(arr[i]+arr[j]+arr[k]+arr[p]==target)
+                    {
+                        return 1;
+                    }
+                }
+            }
+        }
+        return -1;
+    }
+}
 //better approach 
 //optimal approach 
+int optimal(int arr[], int n, int target)
+{
+    vector<vector<int>>ans;
+    sort(arr, arr+n);
+    for(int i=0; i<n-2; i++)
+    {
+        if(i>0 && arr[i]==arr[i-1])
+        continue;
+
+        for(int j=i; j<n-1; j++)
+        {
+            if(j!=i+1 && arr[j]==arr[j-1])
+            continue;
+
+            int start=0;
+            int end=n-1;
+            int sum=target-(arr[i]+arr[j]);
+
+            if(start<=end)
+            {
+                if(arr[start]+arr[end]==sum)
+                {
+                    vector<int>temp;
+                    temp.push_back(arr[i]);
+                    temp.push_back(arr[j]);
+                    temp.push_back(arr[start]);
+                    temp.push_back(arr[end]);
+                    ans.push_back(temp);
+                    start++;
+                    end--;
+
+                    while(start<end && arr[start]==arr[start-1])
+                    start++;
+
+                    while(start<=end && arr[end]==arr[end+1])
+                    end--;
+                }
+            }
+            else if(arr[start]+arr[end]>sum)
+            {
+                end--;
+            }
+            else 
+            {
+                start++;
+            }
+        }
+    }
+    return ans;
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 //four-II sum bruteforce approach 
+
+int foursum(int arr[], int n, int target)
+{
+    for(int i=0; i<n; i++)
+    {
+        for(int j=i+1; j<n; j++)
+        {
+            for(int k=j+1; k<n; k++)
+            {
+                for(int p=k+1; p<n; p++)
+                {
+                    if(arr[i]+arr[j]+arr[k]+arr[p]==target)
+                    {
+                        return 1;
+                    }
+                }
+            }
+        }
+        return -1;
+    }
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 //optimal approach 
 //maximum contigous subarray sum bruteforce approach 
+ 1 2 3 4 5 6  7 
+int maxisubarrsum(int arr[], int n)
+{
+    int maxi=INT_MIN;
+    for(int i=0; i<n; i++)
+    {
+        for(int j=i; j<n; j++)
+        {
+            int sum=0;
+            for(int k=i; k<j ; k++)
+            {
+                
+            }
+        }
+    }
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 //better approach
 //optimal approach
 //print all maximum subarray sum
@@ -164,7 +1077,249 @@
 //---------------------------------------------------------------------------------------------------------------
 //linear search 
 //binary search 
+
+2 4 6 8 9 12 
+int binarysearch(int arr[], int n, int target)
+{
+    int start=0;
+    int end=n-1;
+    while(start<=end)
+    {
+        int mid=start+(end-start)/2;
+        if(arr[mid]==target)
+        {
+            return mid;
+        }
+        else if(arr[mid]>target)
+        {
+            start=mid+1;
+        }
+        else 
+        {
+            end=mid-1;
+        }
+    }
+    return -1;
+}
+int firstoccurence(int arr[], int n, int number)
+{
+    int start=0;
+    int end=n-1;
+    int res;
+    while(start<=end)
+    {
+        int mid=start+(end-start)/2;
+        if(arr[mid]==number)
+        {
+            res=mid;
+            end=mid+1;
+        }
+        else if(arr[mid]>number)
+        {
+            end=mid-1;
+        }
+        else 
+        {
+            start=mid+1;
+        }
+    }
+    return ans;
+}
+
+int lastocc(int arr[], int n, int num)
+{
+    int start=0;
+    int end=n-1;
+    int ans=-1;
+    while(start<=end)
+    {
+        int mid=start+(end-start)/2;
+        if(arr[mid]==num)
+        {
+            ans=mid;
+            start=mid+1;
+        }
+        else if(arr[mid]>num)
+        {
+            start=mid+1;
+        }
+        else
+        {
+            end=mid-1;
+        }
+    }
+    return -1;
+}
+
+int orderofag(int arr[], int n, itn target)
+{
+    int start=0;
+    int end=n-1;
+    while(start<=end)
+    {
+        int mid=start+(end-start)/2;
+        if(arr[mid]==target)
+        {
+            return mid;
+        }
+        else if(arr[mid]>target)
+        {
+            end=mid-1;
+        }
+        else{
+            start=mid+1;
+        }
+    }
+    return -1;
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 //order agnostic binary search 
+
+int orderagn(vector<int>arr, int target)
+{
+    int n=arr.size();
+    int start=0;
+    int end=n-1;
+    // int ans=-1;
+    while(start<=end)
+    {
+        int mis=start+(end-start)/2;
+        if(arr[mid]==target)
+        {
+            return mid;
+        }
+        else if(arr[mid]> target)
+        {
+            end=mid-1;
+        }
+        else 
+        {
+            start=mid+1;
+        }
+    }
+    retiurn -1;
+}
+
+int firstocc(vector<int>arr, int target)
+{
+    int n=arr.size();
+    int start=0;
+    int end=n-1;
+    int ans=-1;
+    while(start<=end)
+    {
+        int mid=start+(end-start)/2;
+        if(arr[mid]==target)
+        {
+            ans=mid;
+            end=mid-1;
+        }
+        else if(arr[mid]<target)
+        {
+            start=mid+1;
+        }
+        else 
+        {
+            end=mid-1;
+        }
+    }
+    return ans;
+}
+
+int lastoccurence(vector<int>arr, int target)
+{
+    int n=arr.size();
+    int start=0;
+    int end=n-1;
+    int ans=-1;
+    while(start<=end)
+    {
+        int mid=start+(end-start)/2;
+        if(arr[mid]==target)
+        {
+            ans=mid;
+            start=mid+1;
+        }
+        else if(arr[mid]<target)
+        {
+            start=mid+1;
+        }
+        else 
+        {
+            end=mid-1;
+        }
+    }
+    return ans;
+}
+
+int lowerboundapply(vector<int>arr, int target)
+{
+    int n=arr.size();
+    int start=0;
+    int end=n-1;
+
+    int ans=-1;
+    while(start<=end)
+    {
+        int mid=start+(end-start)/2;
+        if(arr[mid]>=target)
+        {
+            ans=mid;
+            end=mid-1;
+        }
+        else 
+        {
+            start=mid+1;
+        }
+    }
+    return ans;
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 //first occurence of target 
 //last occurence of target 
 //lowerbound of target 
@@ -174,6 +1329,59 @@
 //find the minimum element in sorted rotated array 
 //second version of minimum element 
 //search element in rotated sorted array 
+int searchinRotate(int arr[], int n, int target)
+{
+      int start=0;
+      int end=n-1;
+      while(start<=end)
+      {
+        int mid=start+(end-start)/2;
+         if(arr[start]==arr[mid] && arr[mid]==arr[end])
+         {
+            start++;
+            end--;
+         }
+
+         if(arr[mid]==target)
+         {
+            return 1;
+         }
+         else if(arr[mid]>target)
+         {
+            start=mid+1;
+         }
+         else 
+         {
+            end=mid;
+         }
+      }
+      return -1;
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 //second version of search 
 //find the square root of element 
 //find the peak element 
@@ -198,48 +1406,123 @@
 
 
 //-----------------------------------------------------------------------------------------------------------------------------
-//print linked list 
-//length of linked list 
-//binary of linked list 
-//reverse linked list using stack 
-//reverse linked list recursive method 
-//reverse linked list iterative method 
-//reverse linked list in k group 
-//middle of linked list 
-//2-method to find the middle element in list  
-//cyclic in linked list  
-//find the starting point of loop 
-//remove loop from linked list 
-//remove duplicate from sorted linked list using recursive method 
-//remove duplicate from sorted linked list using iterative method 
-//remove duplicate from unsorted linked list 
-//palindrome linked list 
-//merge linked list 
-//second method to merge linked list 
-//merge k linked list 
-//second method to merge k linked list 
-//intersection of linked list 
-//second method to find intersection of linked list 
-//odd or even linked list 
-//second method  to find odd and even linked list 
-//delete node where head or not given 
-//check two linked list are identical or not 
-// Nth node from end of linked list 
-//swap node pairwise 
-//swap node kth from starting and kth from end in linked list 
-//2-method 
-//add two linked list 
-//second version 
-//sort linked list 
-//rotate linked list 
-//Partition linked List 
-//reorder linked list 
-//insertion sort in linked list
-//sort 0s 1s 2s linked list  
-//flattening of linked list 
-//reverse doubly linked list using stack 
-//iterative approach 
 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+//find middle node of list (using find length method)
+//or slow and fast pointer method  
+
+//------------------------------------------------------------------------------
+//reverse the list (using stack data structure) 
+//or using recursion method  
+//or using iterative method  
+
+//------------------------------------------------------------------------------
+//detect a cycle in list (using hashmap)
+//using slow and fast pointer 
+
+//------------------------------------------------------------------------------
+//starting point of loop in list (using hashmap)
+//using slow and fast pointer 
+
+//------------------------------------------------------------------------------
+//length of loop in list  (using hashmap)
+//using slow and fast pointer 
+
+//------------------------------------------------------------------------------
+//check palindrome of list (using stack -or- array data structure )
+//or use reverse of middle half of list 
+
+//------------------------------------------------------------------------------
+//segrregate odd and even list (using store  in array )
+//or change link method 
+//make odd and even list and than  merge them 
+
+//------------------------------------------------------------------------------
+//sort 0's , 1's, 2's list (using count method )
+//or make seprate list of 0 , 1 and 2 
+
+//------------------------------------------------------------------------------
+//delete middle node (using find length of list )
+//or using fast and slow pointer 
+
+//------------------------------------------------------------------------------
+//remove Nth node from end (using find length of list )
+//or use two pointer method first to n step and than both will run simultaneously
+
+//------------------------------------------------------------------------------ 
+//sort list (using array data structure) 
+//using merge sort  
+
+//------------------------------------------------------------------------------
+//find intersection of two list (using difference of two list )
+// or using set data structure 
+// or using two pointer method 
+
+//------------------------------------------------------------------------------
+//Add Two list (using stack data structure)
+//or using two pointer method 
+
+//------------------------------------------------------------------------------
+// Add 1 to list (using reverse function )
+// or using recursion 
+// using stack data structure 
+
+//-----------------------------------------------------------------------------
+//rotate list by k place (using array data structure) 
+//or using link change method 
+// or rotate 1 node at a time 
+
+//------------------------------------------------------------------------------
+// flattening list (using array data structure)
+//or using recursion 
+
+//------------------------------------------------------------------------------
+//reverse k group of list (using array or stack data structure) 
+//or using recursion 
+//or using iterative 
+
+//------------------------------------------------------------------------------
+// merge two sorted list (using array data structure)
+//or using recursion 
+//or using iterative 
+
+//------------------------------------------------------------------------------
+//merege k sorted list (using array data structure)
+//using merge two list method 
+//or using min heap data structure 
+
+//------------------------------------------------------------------------------
+//swap node in pairwise (using array data structure) 
+//or using recursion 
+// or use reverse function method 
+
+//------------------------------------------------------------------------------
+//Swapping Nodes in a Linked List kth from start or end (using array data structure) 
+// or two pointer method 
+
+//------------------------------------------------------------------------------
+//remove duplicate node from sortedt list (using array )
+//using recursion 
+//using link change 
+
+//---------------------------------------------------------------------------------
+//
 
 
 //-------------------------------------------------------------------------------------------- 

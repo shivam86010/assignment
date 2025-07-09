@@ -336,7 +336,7 @@ void movezero2(int arr[], int n)
 }
 
 //--------------------------------------------------------------------------------------------------------------
-//move integer at the end of array brute force approach 
+//moveNegative integer at the end of array brute force approach 
 //time complexity is O(n)
 //space complexity is O(n)
 vector<int>moveneg(int arr[], int n)
@@ -405,6 +405,64 @@ void arrangealternate(int arr[], int n)
     }
 }
 
+vector<int>alternateSign(vector<int>arr)
+{
+    int n=arr.size();
+    vector<int>pos;
+    vector<int>neg;
+
+    for(int i=0; i<n; i++)
+    {
+        if(arr[i]<0)
+        {
+            neg.push_back(arr[i]);
+        }
+        else
+        {
+            pos.push_back(arr[i]);
+        }
+    }
+
+    vector<int>ans;
+    for(int i=0; i<n/2; i++)
+    {
+        ans[2*i]=pos[i];
+        ans[2*i+1]=neg[i];
+    }
+    return ans;
+}
+
+vector<int>optimalway(vector<int>arr)
+{
+    int n=arr.size();
+    vector<int>pos;
+    vector<int>neg;
+
+    for(int i=0; i<n; i++)
+    {
+        if(arr[i]<0)
+        {
+            neg.push_back(arr[i]);
+        }
+        else
+        {
+            pos.push_back(arr[i]);
+        }
+    }
+
+    vector<int>ans;
+    if(pos.size() <neg.size())
+    {
+        for(int i=0; i<pos.size(); i++)
+        {
+            ans[2*i]=pos[i];
+            ans[2*i+1]=neg[i];
+        }
+
+        int index=2*pos.size();
+        
+    }
+}
 //--------------------------------------------------------------------------------------------------------------
 //sort 0 1 and 2 method-1 
 //time complexity is O(n)
